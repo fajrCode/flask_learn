@@ -1,0 +1,1 @@
+# __init__.py sama seperti index, saat membuka folder maka file ini akan di baca terlebih dahulu
