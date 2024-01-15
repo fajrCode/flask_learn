@@ -1,6 +1,6 @@
 from app.model.dosen import Dosen
-from app import response, app, db
-from flask import request
+from app.model.mahasiswa import Mahasiswa
+from app import response
 
 
 def allData():
@@ -12,11 +12,18 @@ def allData():
         print(e)
         return response.badReq(e, "Gagal mengambil data")
 
-def oneData(id):
+def detail(id):
     try:
-        dosen = Dosen.query.one()
-        data = singleObject(dosen)
-        return response.success(data, "Response success")
+        dosen = Dosen.query.filter_by(id=id).first()
+        mahasiswa = Mahasiswa.query.filter((Mahasiswa.dosen_satu == id ) | (Mahasiswa.dosen_dua == id))
+        
+        if not dosen:
+            return response.badReq([], 'Dosen not found')
+        
+        dataMhs = formatMhs(mahasiswa)
+        result = detailDosen(dosen, dataMhs)
+        
+        return response.success(result, "Response success")
     except Exception as e:
         print(e)
         return response.badReq(e, "Gagal mengambil data")
@@ -39,4 +46,35 @@ def singleObject(data):
         "alamat": data.alamat,
     }
 
+    return data
+
+def formatMhs(data):
+    array = []
+    
+    for i in data:
+        array.append(singleDetailMhs(i))
+        
+    return array
+
+def singleDetailMhs(data):
+    data = {
+        'id': data.id,
+        'nim': data.nim,
+        'nama': data.nama,
+        'phone': data.phone,
+        'alamat': data.alamat,
+    }
+    
+    return data
+    
+def detailDosen(dosen, mhs):
+    data= {
+        'id': dosen.id,
+        'nidn': dosen.nidn,
+        'nama': dosen.id,
+        'phone': dosen.id,
+        'alamat': dosen.id,
+        'mahasiswa': mhs
+    }
+    
     return data
