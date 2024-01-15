@@ -18,34 +18,44 @@ def dosen(data):
     return data
 
 def detailDosen(dosen, mhs):
-    data= {
-        'id': dosen.id,
-        'nidn': dosen.nidn,
-        'nama': dosen.nama,
-        'phone': dosen.phone,
-        'alamat': dosen.alamat,
-        'mahasiswa': mhs
+    data = {
+        "id": dosen.id,
+        "nidn": dosen.nidn,
+        "nama": dosen.nama,
+        "phone": dosen.phone,
+        "alamat": dosen.alamat,
+        "mahasiswa": mhs,
     }
-    
-    return data
 
+    return data
 
 def dataMhs(data):
     array = []
-    
+
     for i in data:
         array.append(mhs(i))
-        
+
     return array
 
 def mhs(data):
     data = {
-        'id': data.id,
-        'nim': data.nim,
-        'nama': data.nama,
-        'phone': data.phone,
-        'alamat': data.alamat,
+        "id": data.id,
+        "nim": data.nim,
+        "nama": data.nama,
+        "phone": data.phone,
+        "alamat": data.alamat,
     }
-    
+
     return data
-  
+
+def detailMhs(mhs, dosen1, dosen2):
+    data = {
+        "id": mhs.id,
+        "nim": mhs.nim,
+        "nama": mhs.nama,
+        "phone": mhs.phone,
+        "alamat": mhs.alamat,
+        "dosen_satu": dosen1,
+        "dosen_dua": dosen2,
+    }
+    return data

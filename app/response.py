@@ -10,6 +10,15 @@ def success(value, message):
     
     return make_response(jsonify(res)), 200
 
+def successMsg(message):
+    res = {
+        'code': 200,
+        'status': 'OK',
+        'message': message
+    }
+    
+    return make_response(jsonify(res)), 200
+
 def successCreated(message):
     res = {
         'code': 201,
