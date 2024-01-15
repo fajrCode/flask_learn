@@ -1,6 +1,6 @@
 from app.model.dosen import Dosen
 from app.model.mahasiswa import Mahasiswa
-from app import response
+from app import response, db
 from flask import request
 from app.helper.formating import dataDosen, dataMhs, detailDosen
 
@@ -12,7 +12,7 @@ def allData():
         return response.success(result, "Response success")
     except Exception as e:
         print(e)
-        return response.badReq(e, "Gagal mengambil data")
+        return response.serverError()
 
 def detail(id):
     try:
@@ -22,7 +22,7 @@ def detail(id):
         )
 
         if not dosen:
-            return response.badReq([], "Dosen not found")
+            return response.badReq([],'Data tidak ditemukan')
 
         mhs = dataMhs(mahasiswa)
         result = detailDosen(dosen, mhs)
@@ -30,12 +30,42 @@ def detail(id):
         return response.success(result, "Response success")
     except Exception as e:
         print(e)
-        return response.badReq(e, "Gagal mengambil data")
+        return response.serverError()
 
 def create():
-    nidn = request.form.get("nidn")
-    nama = request.form.get("nama")
-    phone = request.form.get("phone")
-    alamat = request.form.get("alamat")
+    try:
+        nidn = request.form.get("nidn")
+        nama = request.form.get("nama")
+        phone = request.form.get("phone")
+        alamat = request.form.get("alamat")
 
-    dosens = Dosen(nidn=nidn, nama=nama, phone=phone, alamat=alamat)
+        dosens = Dosen(nidn=nidn, nama=nama, phone=phone, alamat=alamat)
+        db.session.add(dosens)
+        db.session.commit()
+        
+        return response.successCreated('Data berhasil di tambahkan')
+    except Exception as e:
+        print(e)
+        return response.serverError()
+    
+def edit(id):
+    try:
+        nidn = request.form.get("nidn")
+        nama = request.form.get("nama")
+        phone = request.form.get("phone")
+        alamat = request.form.get("alamat")
+        
+        dosen = Dosen.query.filter_by(id=id).first()
+        
+        dosen.nidn = nidn
+        dosen.nama = nama
+        dosen.phone = phone
+        dosen.alamat = alamat
+        
+        db.session.commit()
+        
+        return response.successCreated('Data berhasil diperbaharui')
+        
+    except Exception as e:
+        print(e)
+        return response.serverError()

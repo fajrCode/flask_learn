@@ -10,6 +10,15 @@ def success(value, message):
     
     return make_response(jsonify(res)), 200
 
+def successCreated(message):
+    res = {
+        'code': 201,
+        'status': 'OK',
+        'message': message
+    }
+    
+    return make_response(jsonify(res)), 201
+
 def badReq(value, message):
     res = {
         'code': 400,
@@ -19,3 +28,21 @@ def badReq(value, message):
     }
     
     return make_response(jsonify(res)), 400
+
+def notFound():
+    res = {
+        'code': 404,
+        'status': 'Not Found',
+        'message': 'Page Not Found'
+    }
+    
+    return make_response(jsonify(res)), 404
+
+def serverError():
+    res = {
+        'code': 500,
+        'status': 'Internal Server Error',
+        'message': 'Server Error'
+    }
+    
+    return make_response(jsonify(res)), 500

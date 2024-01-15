@@ -21,9 +21,9 @@ def detailDosen(dosen, mhs):
     data= {
         'id': dosen.id,
         'nidn': dosen.nidn,
-        'nama': dosen.id,
-        'phone': dosen.id,
-        'alamat': dosen.id,
+        'nama': dosen.nama,
+        'phone': dosen.phone,
+        'alamat': dosen.alamat,
         'mahasiswa': mhs
     }
     
