@@ -59,3 +59,12 @@ def detailMhs(mhs, dosen1, dosen2):
         "dosen_dua": dosen2,
     }
     return data
+
+def dataUser(data):
+    data = {
+        "id": data.id,
+        "name": data.name,
+        "email": data.email
+    }
+    
+    return data

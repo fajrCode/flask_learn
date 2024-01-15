@@ -1,10 +1,12 @@
 from app import app
 from app.helper import response
-from app.controller import DosenCtrl, MhsCtrl
+from app.controller import DosenCtrl, MhsCtrl, UserCtrl
 from flask import request, render_template
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 @app.route("/")
+@jwt_required()
 def index():
     # return response.successMsg('API ready to use')
     return render_template("index.html", title="Flask and Jinja")
@@ -27,8 +29,10 @@ def dosen():
 
 
 @app.route("/dosen/<id>", methods=["GET", "PUT", "DELETE"])
+@jwt_required()
 def detailDosen(id):
     if request.method == "GET":
+        print(get_jwt_identity())
         return DosenCtrl.detail(id)
     elif request.method == "PUT":
         return DosenCtrl.edit(id)
@@ -62,3 +66,12 @@ def detailMhs(id):
         return MhsCtrl.delete(id)
     else:
         return response.notFound()
+
+@app.route('/register', methods=["POST"])
+def register():
+    return UserCtrl.register()
+
+@app.route("/login", methods=["POST"])
+def login():
+    return UserCtrl.login()
+     

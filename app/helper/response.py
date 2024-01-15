@@ -38,6 +38,15 @@ def badReq(value, message):
     
     return make_response(jsonify(res)), 400
 
+def unAuth(message):
+    res = {
+        'code': 401,
+        'status': 'Unauthorized',
+        'message': message
+    }
+    
+    return make_response(jsonify(res)), 400
+
 def notFound():
     res = {
         'code': 404,
