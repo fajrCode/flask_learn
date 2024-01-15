@@ -26,7 +26,6 @@ def detail(id):
         if not mhs:
             return response.badReq([], "Data tidak ditemukan")
 
-
         if not mhs.dosen_satu:
             dosen1 = None
         else:
@@ -39,7 +38,6 @@ def detail(id):
             dosen_dua = Dosen.query.filter_by(id=mhs.dosen_dua).first()
             dosen2 = dosen(dosen_dua)
 
-
         result = detailMhs(mhs, dosen1, dosen2)
 
         return response.success(result, "Response success")
@@ -51,28 +49,66 @@ def detail(id):
 
 def create():
     try:
-        nim = request.form.get('nim')
-        nama = request.form.get('nama')
-        phone = request.form.get('phone')
-        alamat = request.form.get('alamat')
-        dosen_satu = request.form.get('dosen_satu')
-        dosen_dua = request.form.get('dosen_dua')
-        
-        mhs = Mahasiswa(nim = nim, nama = nama, phone= phone, alamat=alamat, dosen_satu = dosen_satu, dosen_dua= dosen_dua)
-        
+        nim = request.form.get("nim")
+        nama = request.form.get("nama")
+        phone = request.form.get("phone")
+        alamat = request.form.get("alamat")
+        dosen_satu = request.form.get("dosen_satu")
+        dosen_dua = request.form.get("dosen_dua")
+
+        mhs = Mahasiswa(
+            nim=nim,
+            nama=nama,
+            phone=phone,
+            alamat=alamat,
+            dosen_satu=dosen_satu,
+            dosen_dua=dosen_dua,
+        )
+
         db.session.add(mhs)
         db.session.commit()
-        
-        return response.successCreated('Berhasil menambahkan data mahasiswa')
-        
+
+        return response.successCreated("Berhasil menambahkan data mahasiswa")
+
     except Exception as e:
         print(e)
         return response.serverError()
 
+
 def edit(id):
-    return 'hi'
+    try:
+        nim = request.form.get("nim")
+        nama = request.form.get("nama")
+        phone = request.form.get("phone")
+        alamat = request.form.get("alamat")
+        dosen_satu = request.form.get("dosen_satu")
+        dosen_dua = request.form.get("dosen_dua")
+
+        mhs = Mahasiswa.query.filter_by(id=id).first()
+
+        mhs.nim = nim
+        mhs.nama = nama
+        mhs.phone = phone
+        mhs.alamat = alamat
+        mhs.dosen_satu = dosen_satu
+        mhs.dosen_dua = dosen_dua
+
+        db.session.commit()
+
+        return response.successMsg("Update data berhasil")
+    except Exception as e:
+        print(e)
+        return response.serverError()
+
 
 def delete(id):
-    return 'hi'
+    try:
+        mhs = Mahasiswa.query.filter_by(id=id).first()
 
+        db.session.delete(mhs)
+        db.session.commit()
 
+        return response.successMsg("Data berhasil dihapus")
+    except Exception as e:
+        print(e)
+        return response.serverError()
