@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flask & Jinja</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <head>
+  <body>
+    <div class="container mx-auto p-2 text-center">
+        <header>
+            <h1 class="text-3xl font-bold mb-4">{{ title }}</h1>
+        </header>
+        <nav class="bg-gray-800">
+            <div class="p-2 flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <ul class="flex space-x-4 mx-auto">
+                    {% for menu_item in ["index", "dosen", "mahasiswa"] %}
+                    <li class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                        <a class="" href="{{ url_for(menu_item) }}">{{ menu_item | upper }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>

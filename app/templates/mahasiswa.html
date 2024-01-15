@@ -1,0 +1,26 @@
+{% include "components/head.html" %}
+  <h3 class="text-xl font-bold mb-2 mt-2">Data Mahasiswa</h3>
+  <table class="table-auto border-collapse border mx-auto">
+    <thead>
+      <tr>
+        <th class="border border-slate-600 px-3">No</th>
+        <th class="border border-slate-600 px-3">NIM</th>
+        <th class="border border-slate-600 px-3">Nama</th>
+        <th class="border border-slate-600 px-3">Phone</th>
+        <th class="border border-slate-600 px-3">Alamat</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in datas %}
+      <tr>
+        <td class="border border-slate-600">{{data.id}}</td>
+        <td class="border border-slate-600">{{data.nim}}</td>
+        <td class="border border-slate-600">{{data.nama}}</td>
+        <td class="border border-slate-600">{{data.phone}}</td>
+        <td class="border border-slate-600">{{data.alamat}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% include "components/foot.html" %}

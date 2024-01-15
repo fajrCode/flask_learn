@@ -1,6 +1,7 @@
 from app.model.mahasiswa import Mahasiswa
 from app.model.dosen import Dosen
-from app import response, db
+from app import db
+from app.helper import response
 from app.helper.formating import dataMhs, detailMhs, dosen
 from flask import request
 
@@ -14,7 +15,8 @@ def allData():
 
         result = dataMhs(data)
 
-        return response.success(result, "Response Success")
+        return result
+        # return response.success(result, "Response Success")
     except Exception as e:
         print(e)
         return response.serverError()
