@@ -13,7 +13,7 @@
     <tbody>
       {% for data in datas %}
       <tr>
-        <td class="border border-slate-600">{{data.id}}</td>
+        <td class="border border-slate-600">{{loop.index}}</td>
         <td class="border border-slate-600">{{data.nim}}</td>
         <td class="border border-slate-600">{{data.nama}}</td>
         <td class="border border-slate-600">{{data.phone}}</td>

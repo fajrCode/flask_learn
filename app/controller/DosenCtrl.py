@@ -29,7 +29,7 @@ def detail(id):
         mhs = dataMhs(mahasiswa)
         result = detailDosen(dosen, mhs)
 
-        return response.success(result, "Response success")
+        return result
     except Exception as e:
         print(e)
         return response.serverError()
