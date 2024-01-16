@@ -6,7 +6,6 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 @app.route("/")
-@jwt_required()
 def index():
     # return response.successMsg('API ready to use')
     return render_template("index.html", title="Flask and Jinja")

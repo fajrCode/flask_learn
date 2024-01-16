@@ -1,7 +1,7 @@
 from app.model.dosen import Dosen
 from app.model.mahasiswa import Mahasiswa
 from app import db
-from app.helper import response
+from app.helper import response, upload
 from flask import request
 from app.helper.formating import dataDosen, dataMhs, detailDosen
 
@@ -14,7 +14,6 @@ def allData():
     except Exception as e:
         print(e)
         return response.serverError()
-
 
 
 def detail(id):
@@ -42,8 +41,10 @@ def create():
         nama = request.form.get("nama")
         phone = request.form.get("phone")
         alamat = request.form.get("alamat")
+        
+        gambar = upload.uploadFile()
 
-        dosens = Dosen(nidn=nidn, nama=nama, phone=phone, alamat=alamat)
+        dosens = Dosen(nidn=nidn, nama=nama, phone=phone, alamat=alamat, gambar=gambar)
         db.session.add(dosens)
         db.session.commit()
 

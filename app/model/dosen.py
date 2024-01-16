@@ -6,6 +6,7 @@ class Dosen(db.Model):
     nama = db.Column(db.String(50), nullable=False)
     phone = db.Column(db.String(13), nullable=False)
     alamat = db.Column(db.String(100), nullable=False)
+    gambar = db.Column(db.String(100))
     
     def __repr__(self):
         return '<Dosen {}>'.format(self.name)
