@@ -3,7 +3,7 @@ from app.helper import response
 from app.controller import DosenCtrl, MhsCtrl, UserCtrl
 # from flask_jwt_extended import get_jwt_identity, jwt_required
 
-api = Blueprint("api", __name__, template_folder="..templates")
+api = Blueprint("api", __name__)
 
 
 @api.route("/")

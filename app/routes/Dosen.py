@@ -3,7 +3,7 @@ from app.helper import response
 from app.controller import DosenCtrl
 # from flask_jwt_extended import jwt_required, get_jwt_identity
 
-dosen = Blueprint("dosen", __name__, render_template)
+dosen = Blueprint("dosen", __name__, template_folder="..templates")
 
 # route dosen
 @dosen.route("/", methods=["GET", "POST"])

@@ -1,7 +1,8 @@
 from app.model.user import User
 from app.helper import response
 from app.helper.formating import dataUser
-from app import db
+# from app import db
+from app.config.dbConfig import db
 from flask import request
 from flask_jwt_extended import create_access_token, create_refresh_token
 import datetime
