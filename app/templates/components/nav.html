@@ -1,0 +1,16 @@
+<body>
+    <div class="container mx-auto p-2">
+        <header>
+            <a href="/"><h1 class="text-3xl font-bold mb-4 text-center">{{ title }}</h1></a>
+        </header>
+        <nav class="bg-gray-800">
+            <div class="p-2 flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <ul class="flex space-x-4 mx-auto">
+                    {% for menu_item in ["dosen", "mahasiswa", "login", "register"] %}
+                    <li class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
+                        <a class="" href="/{{ menu_item }}">{{ menu_item | upper }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>

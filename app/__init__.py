@@ -11,10 +11,10 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
 
-app.register_blueprint(Api.api, url_prefix="/api")
-app.register_blueprint(Api.dosen, url_prefix="/dosen")
-app.register_blueprint(Api.mahasiswa, url_prefix="/mahasiswa")
+from app.routes import api, main, dosen, mahasiswa
 
-# app.mode --> folder app/model
-from app.model import user, dosen, mahasiswa
-from app import route
+app.register_blueprint(main.Main)
+app.register_blueprint(api.Api, url_prefix="/api")
+app.register_blueprint(dosen.Dosen,url_prefix="/dosen")
+app.register_blueprint(mahasiswa.Mahasiswa,url_prefix="/mahasiswa")
+

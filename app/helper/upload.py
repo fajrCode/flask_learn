@@ -1,6 +1,6 @@
 from werkzeug.utils import secure_filename
-from app.config import uploadConfig
 from app import app
+from app.config import uploadConfig
 from flask import request
 from app.helper import response
 import uuid
