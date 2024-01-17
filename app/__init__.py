@@ -1,5 +1,5 @@
 from flask import Flask
-from config import Config
+from app.config.config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
@@ -10,6 +10,9 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
 
-# app.mode --> folder app/model
-from app.model import user, dosen, mahasiswa
-from app import routes
+from app.routes import api, main, dosen, mahasiswa
+
+app.register_blueprint(main.Main)
+app.register_blueprint(api.Api, url_prefix="/api")
+app.register_blueprint(dosen.Dosen,url_prefix="/dosen")
+app.register_blueprint(mahasiswa.Mahasiswa,url_prefix="/mahasiswa")

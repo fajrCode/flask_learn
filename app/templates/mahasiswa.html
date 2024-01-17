@@ -1,23 +1,29 @@
 {% include "components/head.html" %}
-  <h3 class="text-xl font-bold mb-2 mt-2">Data Mahasiswa</h3>
+{% include "components/nav.html" %}
+  <h3 class="text-xl font-bold mb-8 mt-8 text-center">Data Mahasiswa</h3>
   <table class="table-auto border-collapse border mx-auto">
     <thead>
       <tr>
-        <th class="border border-slate-600 px-3">No</th>
-        <th class="border border-slate-600 px-3">NIM</th>
-        <th class="border border-slate-600 px-3">Nama</th>
-        <th class="border border-slate-600 px-3">Phone</th>
-        <th class="border border-slate-600 px-3">Alamat</th>
+        <th class="border border-slate-600 px-2">No</th>
+        <th class="border border-slate-600 px-2">NIM</th>
+        <th class="border border-slate-600 px-2">Nama</th>
+        <th class="border border-slate-600 px-2">Phone</th>
+        <th class="border border-slate-600 px-2">Alamat</th>
+        <th class="border border-slate-600 px-2">Action</th>
       </tr>
     </thead>
     <tbody>
       {% for data in datas %}
       <tr>
-        <td class="border border-slate-600">{{data.id}}</td>
-        <td class="border border-slate-600">{{data.nim}}</td>
-        <td class="border border-slate-600">{{data.nama}}</td>
-        <td class="border border-slate-600">{{data.phone}}</td>
-        <td class="border border-slate-600">{{data.alamat}}</td>
+        <td class="border border-slate-600 px-2">{{loop.index}}</td>
+        <td class="border border-slate-600 px-2">{{data.nim}}</td>
+        <td class="border border-slate-600 px-2">{{data.nama}}</td>
+        <td class="border border-slate-600 px-2">{{data.phone}}</td>
+        <td class="border border-slate-600 px-2">{{data.alamat}}</td>
+        <td class="border border-slate-600 px-2">
+          <button type="button"><a href="/mahasiswa/edit/{{data.id}}" class="rounded-lg px-1 text-sm font-semibold text-green-600 hover:outline hover:outline-green-400">Edit</a></button> | 
+          <button type="button" onclick="return confirm('Yakin ingin menghapus data ini?')"><a href="/mahasiswa/delete/{{data.id}}" class="rounded-lg px-1 text-sm font-semibold text-red-600 hover:outline hover:outline-red-400">Delete</a></button>
+        </td>
       </tr>
       {% endfor %}
     </tbody>
