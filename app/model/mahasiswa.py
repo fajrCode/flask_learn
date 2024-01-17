@@ -1,5 +1,4 @@
-# from app import db
-from app.config.dbConfig import db
+from app import db
 from app.model.dosen import Dosen
 
 class Mahasiswa(db.Model):

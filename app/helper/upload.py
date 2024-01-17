@@ -1,6 +1,6 @@
 from werkzeug.utils import secure_filename
+from app import app
 from app.config import uploadConfig
-# from app import app
 from flask import request
 from app.helper import response
 import uuid
@@ -22,7 +22,7 @@ def uploadFile():
             filename = secure_filename(file.filename)
             renameFile = "Flask-"+str(uid)+filename
             
-            # file.save(os.path.join(app.config["UPLOAD_FOLDER"], renameFile))
+            file.save(os.path.join(app.config["UPLOAD_FOLDER"], renameFile))
             return renameFile
         else:
             return response.badReq([], 'file type not allowed')

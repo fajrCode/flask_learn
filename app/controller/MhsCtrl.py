@@ -1,7 +1,6 @@
 from app.model.mahasiswa import Mahasiswa
 from app.model.dosen import Dosen
-# from app import db
-from app.config.dbConfig import db
+from app import db
 from app.helper import response
 from app.helper.formating import dataMhs, detailMhs, dosen
 from flask import request

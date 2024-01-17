@@ -1,5 +1,4 @@
-# from app import db
-from app.config.dbConfig import db
+from app import db
 
 class Dosen(db.Model):
     id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)

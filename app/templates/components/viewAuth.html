@@ -1,0 +1,19 @@
+{% include "components/head.html" %}
+
+<body>
+    <div class="container mx-auto p-2">
+        <header class="mt-16">
+            <a href="/"><h1 class="text-3xl font-bold text-center">{{ title }}</h1></a>
+        </header>
+
+        {% block login %}
+        {% endblock login %}
+        {% block register %}
+        {% endblock register %}
+
+        <footer class="bg-gray-800 p-3 text-white text-center">
+            Copyright fajrCode&copy; 2024 
+        </footer>
+    </div>
+</body>
+</html>
