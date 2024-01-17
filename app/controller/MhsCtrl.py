@@ -42,7 +42,7 @@ def detail(id):
 
         result = detailMhs(mhs, dosen1, dosen2)
 
-        return response.success(result, "Response success")
+        return result
 
     except Exception as e:
         print(e)
