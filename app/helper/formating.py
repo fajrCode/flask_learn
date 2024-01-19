@@ -13,6 +13,7 @@ def dosen(data):
         "nama": data.nama,
         "phone": data.phone,
         "alamat": data.alamat,
+        "gambar": data.gambar
     }
 
     return data
@@ -24,6 +25,7 @@ def detailDosen(dosen, mhs):
         "nama": dosen.nama,
         "phone": dosen.phone,
         "alamat": dosen.alamat,
+        "gambar": dosen.gambar,
         "mahasiswa": mhs,
     }
 

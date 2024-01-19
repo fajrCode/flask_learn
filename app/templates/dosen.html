@@ -9,6 +9,7 @@
         <th class="border border-slate-600 px-2">Nama</th>
         <th class="border border-slate-600 px-2">Phone</th>
         <th class="border border-slate-600 px-2">Alamat</th>
+        <th class="border border-slate-600 px-2">Foto</th>
         <th class="border border-slate-600 px-2">Action</th>
       </tr>
     </thead>
@@ -21,6 +22,9 @@
         <td class="border border-slate-600 px-2">{{data.phone}}</td>
         <td class="border border-slate-600 px-2">{{data.alamat}}</td>
         <td class="border border-slate-600 px-2">
+          <img src="/static/images/{{data.gambar}}" alt="foto-{{data.nama}}" width="250px">
+        </td>
+        <td class="border border-slate-600 px-2">
           <button type="button"><a href="/dosen/edit/{{data.id}}" class="rounded-lg px-1 text-sm font-semibold text-green-600 hover:outline hover:outline-green-400">Edit</a></button> | 
           <button type="button" onclick="return confirm('Yakin ingin menghapus data ini?')"><a href="/dosen/delete/{{data.id}}" class="rounded-lg px-1 text-sm font-semibold text-red-600 hover:outline hover:outline-red-400">Delete</a></button>
         </td>
@@ -28,5 +32,10 @@
       {% endfor %}
     </tbody>
   </table>
+  <div class="form mx-auto w-32 mt-6">
+  <a href="/dosen/add" class=" rounded-md bg-gray-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800">
+      Tambah Dosen
+  </a>
+</div>
 
 {% include "components/foot.html" %}

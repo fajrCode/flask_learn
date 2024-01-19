@@ -43,6 +43,7 @@ def create():
         alamat = request.form.get("alamat")
         
         gambar = upload.uploadFile()
+        print(gambar)
 
         dosens = Dosen(nidn=nidn, nama=nama, phone=phone, alamat=alamat, gambar=gambar)
         db.session.add(dosens)

@@ -3,29 +3,30 @@ from app import app
 from app.config import uploadConfig
 from flask import request
 from app.helper import response
-import uuid
 import os
 
 
 def uploadFile():
     try:
-        if 'file' not in request.files:
+        if 'gambar' not in request.files:
             return response.badReq([], 'File tidak tersedia')
+            # return "file not in request.files"
         
-        file = request.files["file"]
+        file = request.files["gambar"]
         
         if file.filename == '':
             return response.badReq([], 'File tidak tersedia')
+            # return "file.name kosong"
         
-        if file and uploadConfig.allowFIle(file.filename):
-            uid = uuid.uuid4
+        if file and uploadConfig.allowFile(file.filename):
             filename = secure_filename(file.filename)
-            renameFile = "Flask-"+str(uid)+filename
+            renameFile = "Flask-"+filename
             
             file.save(os.path.join(app.config["UPLOAD_FOLDER"], renameFile))
             return renameFile
         else:
             return response.badReq([], 'file type not allowed')
+            # return "gagal"
             
     except Exception as e:
         print(e)

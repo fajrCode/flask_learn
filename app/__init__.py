@@ -10,7 +10,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
 
-from app.routes import api, main, dosen, mahasiswa
+from app.routes import api, main, dosen, mahasiswa  # noqa: E402
 
 app.register_blueprint(main.Main)
 app.register_blueprint(api.Api, url_prefix="/api")
